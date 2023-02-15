@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="material_registration_view_form" model="ir.ui.view">
+            <field name="name">material.registration.view.form</field>
+            <field name="model">register.material</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Material Registration">
+                    <sheet>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="material_type"/>
+                            <field name="buy_price"/>
+                            <field name="related_supplier_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="material_registration_view_search" model="ir.ui.view">
+            <field name="name">material.registration.view.search</field>
+            <field name="model">register.material</field>
+            <field name="arch" type="xml">
+                <search string="Search">
+                    <field name="name" string="Material Name" filter_domain="[('name','ilike',self)]"/>
+                    <filter string="Fabric Type" name="fabric_type" domain="[('material_type','=','fabric')]"/>
+                    <filter string="Jeans Type" name="jeans_type" domain="[('material_type','=','jeans')]"/>
+                    <filter string="Cotton Type" name="cotton_type" domain="[('material_type','=','cotton')]"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Material Type" name="type" context="{'group_by':'material_type'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="material_registration_view_tree" model="ir.ui.view">
+            <field name="name">material.registration.view.tree</field>
+            <field name="model">register.material</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Material Registration">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="material_type"/>
+                    <field name="buy_price"/>
+                    <field name="related_supplier_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_material_registration" model="ir.actions.act_window">
+            <field name="name">Material Registration</field>
+            <field name="res_model">register.material</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Material Registration" action="action_material_registration" id="root_menu_material_registration" sequence="99" />
+
+    </data>
+</odoo>
